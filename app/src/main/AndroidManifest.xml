@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.luoyu1337.edgefluiddl">
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="Edgefluiddl"
+        android:hasCode="true">
+
+        <!-- 「打开」后的收尾页：只撤通知，不显示界面 -->
+        <activity
+            android:name=".OpenProxyActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- LSPosed 模块声明 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="让 Edge 的下载通知展示在 ColorOS 流体云" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+
+        <!-- 推荐作用域：模块启用时默认勾选（LSPosed Wiki: Module Scope，多个用分号分隔） -->
+        <meta-data
+            android:name="xposedscope"
+            android:value="com.microsoft.emmx" />
+    </application>
+</manifest>
