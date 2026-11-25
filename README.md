@@ -110,8 +110,13 @@ scripts/                      build.sh / link.sh / package.sh / 调试签名
 
 [MIT](LICENSE)
 
-程序图标来自 mahiroDesu 提供的 `mahiro_edge.svg`。
-mahiroDesu · [B站主页](https://space.bilibili.com/511020312/)
+## 作者
+
+Luoyu1337 · [GitHub](https://github.com/Luoyu1337)
+
+## 图标
+
+`mahiro_edge.svg` 由 mahiroDesu 提供 · [B站主页](https://space.bilibili.com/511020312/)
 
 
 ---

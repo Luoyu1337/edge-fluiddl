@@ -13,7 +13,7 @@ cp "$OUT/base.apk" "$OUT/unsigned.apk"
 if [ ! -f "$ROOT/scripts/keystore.jks" ]; then
   keytool -genkeypair -keystore "$ROOT/scripts/keystore.jks" -storepass android \
     -keypass android -alias module -keyalg RSA -keysize 2048 -validity 10000 \
-    -dname "CN=mahiroDesu" >/dev/null 2>&1
+    -dname "CN=Luoyu1337" >/dev/null 2>&1
 fi
 
 java -jar "$BT/lib/apksigner.jar" sign \

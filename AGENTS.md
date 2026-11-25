@@ -9,7 +9,7 @@ Android 16 的 `ProgressStyle` + promoted ongoing，交给 ColorOS 流体云显�
 下载完成后加「打开」和「关闭」两个按钮。只改内存对象，不写文件。
 
 - 包名 `io.github.luoyu1337.edgefluiddl`，版本 1.0（versionCode 1）
-- 作者 mahiroDesu（[B站主页](https://space.bilibili.com/511020312/)），图标来自 `mahiro_edge.svg`
+- 作者 Luoyu1337（[GitHub](https://github.com/Luoyu1337)），图标来自 mahiroDesu 提供的 `mahiro_edge.svg`
 - 目标应用 `com.microsoft.emmx`（Microsoft Edge）
 - 最低 Android 16（API 36），ColorOS 16 / 17 实测可用
 
@@ -30,7 +30,7 @@ tools/DumpApi.java      真机反射探测小工具（查系统方法签名用�
 scripts/build.sh        Linux：javac + d8
 scripts/link.sh         设备：aapt2 link（aapt2 是 bionic 二进制，只能在设备跑）
 scripts/package.sh      Linux：塞 dex + apksigner 签名
-scripts/keystore.jks    签名密钥（alias=module，CN=mahiroDesu，storepass/keypass=android）
+scripts/keystore.jks    签名密钥（alias=module，storepass/keypass=android）
 ```
 
 ## 构建与安装
