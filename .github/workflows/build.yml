@@ -21,12 +21,20 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
       - name: Install SDK packages
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-34" "build-tools;34.0.0"
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          SDKM="$(command -v sdkmanager || true)"
+          if [ -z "$SDKM" ]; then
+            SDKM="$(find "$SDK/cmdline-tools" -type f -path "*/bin/sdkmanager" 2>/dev/null | head -n 1)"
+          fi
+          if [ -z "$SDKM" ]; then
+            echo "sdkmanager not found under $SDK" >&2
+            exit 1
+          fi
+          echo "using $SDKM"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Resolve version
         id: version
@@ -50,7 +58,7 @@ jobs:
           VERSION_NAME: ${{ steps.version.outputs.name }}
         run: |
           set -euo pipefail
-          SDK="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
           BT="$SDK/build-tools/34.0.0"
           AJ="$SDK/platforms/android-34/android.jar"
           rm -rf build
@@ -77,7 +85,7 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           set -euo pipefail
-          BT="${ANDROID_HOME:-$ANDROID_SDK_ROOT}/build-tools/34.0.0"
+          BT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}/build-tools/34.0.0"
           if [[ -n "${KEYSTORE_BASE64:-}" ]]; then
             echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/keystore.jks"
             java -jar "$BT/lib/apksigner.jar" sign \
@@ -101,7 +109,7 @@ jobs:
       - name: Verify
         run: |
           set -euo pipefail
-          BT="${ANDROID_HOME:-$ANDROID_SDK_ROOT}/build-tools/34.0.0"
+          BT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}/build-tools/34.0.0"
           java -jar "$BT/lib/apksigner.jar" verify -v --print-certs build/Edgefluiddl.apk
           "$BT/aapt2" dump badging build/Edgefluiddl.apk > build/badging.txt
           head -n 1 build/badging.txt
