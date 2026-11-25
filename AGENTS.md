@@ -9,7 +9,7 @@ Android 16 的 `ProgressStyle` + promoted ongoing，交给 ColorOS 流体云显�
 下载完成后加「打开」和「关闭」两个按钮。只改内存对象，不写文件。
 
 - 包名 `io.github.luoyu1337.edgefluiddl`，版本 1.0（versionCode 1）
-- 作者 Luoyu1337（[GitHub](https://github.com/Luoyu1337)），图标来自 mahiroDesu 提供的 `mahiro_edge.svg`
+- 作者 LuoYu（[GitHub](https://github.com/Luoyu1337)），图标来自 mahiroDesu 提供的 `mahiro_edge.svg`
 - 目标应用 `com.microsoft.emmx`（Microsoft Edge）
 - 最低 Android 16（API 36），ColorOS 16 / 17 实测可用
 

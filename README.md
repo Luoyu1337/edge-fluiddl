@@ -112,7 +112,7 @@ scripts/                      build.sh / link.sh / package.sh / 调试签名
 
 ## 作者
 
-Luoyu1337 · [GitHub](https://github.com/Luoyu1337)
+LuoYu · [GitHub](https://github.com/Luoyu1337)
 
 ## 图标
 
