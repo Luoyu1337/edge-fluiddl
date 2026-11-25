@@ -74,9 +74,6 @@ bash scripts/package.sh    # Linux：塞 dex + 签名
 脚本里的 SDK 路径默认是 `/data/local/tmp/fluiddl/sdk`，aapt2 在
 `/data/local/tmp/tprefix/.../usr/bin`（Termux 解包版）。换机器时改这两个变量。
 
-GitHub Actions 会在 push / PR 时构建 APK；推送 `1-1.0` 这样的 tag 会创建 Release。
-正式签名所需的仓库 Secrets 见 AGENTS.md。
-
 ## 仓库结构
 
 ```
@@ -91,8 +88,7 @@ app/src/main/
     └── OpenProxyActivity.java    「打开」收尾页：撤通知，不参与打开流程
 AGENTS.md                     构建、坑和验证方法
 SUMMARY                       LSPosed 模块仓库首页简介
-version.env                   版本号（CI 与 link.sh 共用）
-.github/workflows/build.yml   CI：构建 + tag 发布
+version.env                   版本号（link.sh 读取）
 compat/stubs/                 Xposed API 编译占位（只编译，不打包）
 tools/DumpApi.java            真机反射探测小工具（查 ProgressStyle 方法签名）
 scripts/                      build.sh / link.sh / package.sh / 调试签名
