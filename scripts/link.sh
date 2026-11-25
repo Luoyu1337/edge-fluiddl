@@ -7,6 +7,12 @@ ROOT=/data/local/tmp/fluiddl/edge-fluiddl
 P=/data/local/tmp/tprefix/data/data/com.termux/files/usr
 SDK=/data/local/tmp/fluiddl/sdk
 
+if [ -f "$ROOT/version.env" ]; then
+    . "$ROOT/version.env"
+fi
+: "${VERSION_CODE:=1}"
+: "${VERSION_NAME:=1.0}"
+
 export LD_LIBRARY_PATH=$P/lib
 
 "$P/bin/aapt2" compile --dir "$ROOT/app/src/main/res" -o "$ROOT/build/res.zip"
@@ -17,7 +23,7 @@ export LD_LIBRARY_PATH=$P/lib
     --manifest "$ROOT/app/src/main/AndroidManifest.xml" \
     -A "$ROOT/app/src/main/assets" \
     --min-sdk-version 26 --target-sdk-version 34 \
-    --version-code 1 --version-name 1.0 \
+    --version-code "$VERSION_CODE" --version-name "$VERSION_NAME" \
     "$ROOT/build/res.zip"
 
 ls -l "$ROOT/build/base.apk"

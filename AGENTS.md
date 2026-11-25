@@ -127,6 +127,14 @@ rm -f /sdcard/Download/slowdl*
 - 通知组摘要（`FLAG_GROUP_SUMMARY`）不改写；「关闭」按钮的 requestCode 由 `id/tag` 派生，
   因为 extras 不参与 PendingIntent 身份比较，固定 requestCode 会让多个完成通知共用同一个 PendingIntent。
 
+## CI
+
+- `.github/workflows/build.yml`：push / PR 构建 APK 并上传 artifact；推送 tag 创建 Release。
+- tag 格式为 `版本号-版本名`，例如 `1-1.0`。
+- 正式签名需要仓库 Secrets：`KEYSTORE_BASE64`（`base64 -w0 scripts/keystore.jks`）、
+  `KEYSTORE_PASSWORD`、`KEY_ALIAS`、`KEY_PASSWORD`。
+- 未配置 secrets 的分支 / PR 构建使用临时调试密钥，只能测试；tag 构建缺少 secrets 会失败。
+
 ## 发布到 LSPosed 模块仓库
 
 - 提交 issue 标题：`[submission] io.github.luoyu1337.edgefluiddl`，仓库名必须与包名完全一致。
@@ -139,8 +147,8 @@ rm -f /sdcard/Download/slowdl*
 
 ## 版本号
 
-对外版本统一在 `scripts/link.sh` 的 `--version-code / --version-name` 里；
-改完记得同步 README。当前 1.0（versionCode 1）。
+对外版本统一在仓库根目录的 `version.env`（`VERSION_CODE` / `VERSION_NAME`）；
+CI 的 tag 构建会用 tag 覆盖。当前 1.0（versionCode 1）。
 
 更换签名后，已安装的旧版无法覆盖安装：必须先在 LSPosed 里停用并卸载旧包，
 再安装新包，重新启用模块并勾选 Edge 作用域。
